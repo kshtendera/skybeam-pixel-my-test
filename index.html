@@ -52,18 +52,38 @@
       return interestedIn || 'not_specified';
     }
 
+    // function trackFormSubmission(formElement, triggerType = 'submit_button') {
+    //   const interestedIn = getInterestedInValue();
+    //   sb_beacon("send", "event", "lead", {
+    //     type: "form_submit",
+    //     form_name: "Contact Us",
+    //     page_url: location.href,
+    //     interested_in: interestedIn,
+    //     ts: Date.now(),
+    //     trigger_type: triggerType
+    //   });
+    //   console.log('Form submission tracked:', { form: formElement, interested_in: interestedIn, trigger_type: triggerType });
+    // }
     function trackFormSubmission(formElement, triggerType = 'submit_button') {
-      const interestedIn = getInterestedInValue();
-      sb_beacon("send", "event", "lead", {
-        type: "form_submit",
-        form_name: "Contact Us",
-        page_url: location.href,
-        interested_in: interestedIn,
-        ts: Date.now(),
-        trigger_type: triggerType
-      });
-      console.log('Form submission tracked:', { form: formElement, interested_in: interestedIn, trigger_type: triggerType });
-    }
+  const interestedIn = getInterestedInValue();
+  
+  sb_beacon("send", "event", "lead", {
+    type: "form_submit",
+    form_name: "Contact Us",
+    page_url: location.href,
+    interested_in: interestedIn,
+    ts: Date.now(),
+    trigger_type: triggerType,
+    lead_category: 'test'
+  });
+
+  console.log('Form submission tracked:', { 
+    form: formElement, 
+    interested_in: interestedIn, 
+    trigger_type: triggerType,
+    lead_category: 'test' 
+  });
+}
 
     function trackGetStartedClick(element) {
       const interestedIn = getInterestedInValue();
@@ -74,6 +94,7 @@
         interested_in: interestedIn,
         ts: Date.now(),
         trigger_type: 'get_started_button'
+        lead_category: 'test'
       });
       console.log('Get Started button clicked:', { element, interested_in: interestedIn });
     }
